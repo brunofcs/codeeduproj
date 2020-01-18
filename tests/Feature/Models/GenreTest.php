@@ -83,6 +83,10 @@ class GenreTest extends TestCase
 
         $this->assertTrue($genre->delete());
         $this->assertNull(Genre::find($id));
+
+        // testa a restauracao devido a exclusao logica
+        $genre->restore();
+        $this->assertNotNull(Genre::find($id));
     }
 
     public function testUUID()
