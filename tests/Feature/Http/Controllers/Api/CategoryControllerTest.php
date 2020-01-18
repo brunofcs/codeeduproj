@@ -133,8 +133,8 @@ class CategoryControllerTest extends TestCase
 
         $response->assertStatus(204);
 
-        $category = Category::find($category->id);
-        $this->assertNull($category);
+        $this->assertNull(Category::find($category->id));
+        $this->assertNotNull(Category::withTrashed()->find($category->id));
     }
 
     protected function assertInvalidationRequired($response)
